@@ -1,23 +1,5 @@
 (function(){
-var dict={
-en:{
-"nav.home":"Home","nav.research":"Research","nav.pub":"Publications","nav.writing":"Writing","nav.games":"Games",
-"home.sub":"PhD candidate in Systems Pharmacology, Leiden University",
-"home.intro":"I work on quantitative pharmacology and PK/PD modeling of antiviral drugs, with interests in viral dynamics, in-vitro drug-interaction modeling, and model-informed first-in-human dose prediction.",
-"home.btn.research":"Research","home.btn.games":"Games","home.btn.contact":"Contact",
-"home.news":"News","home.news1":"Website launched (Nov 2026). More content coming soon.",
-"home.contact":"Contact",
-"r1.t":"Antiviral PK/PD modeling","r1.d":"Quantitative models linking drug exposure to antiviral effect.",
-"r2.t":"Viral dynamics and drug interaction","r2.d":"Modeling antiviral combinations and in-vitro drug-drug interactions (GPDI).",
-"r3.t":"First-in-human dose prediction","r3.d":"Model-informed approaches including MABEL-based dose selection.",
-"r4.t":"Systematic reviews and meta-analysis","r4.d":"Evidence synthesis, meta-regression and quality assessment.",
-"pub.note":"Publication list coming soon.",
-"writing.note":"Articles and notes coming soon.",
-"games.note":"Small browser games I built. They run entirely in your browser.",
-"g1.t":"Animal Sudoku (6×6 / 8×8 / 9×9)","g1.d":"An animal-themed sudoku with 36 challenge levels, tiered hints, candidate notes and trial colours. Best times are saved in your browser.","games.play":"Play","games.src":"Source code",
-"foot":"All rights reserved."
-},
-zh:{
+var zh={
 "nav.home":"首页","nav.research":"研究","nav.pub":"论文","nav.writing":"文章","nav.games":"小游戏",
 "home.sub":"莱顿大学系统药理学博士研究生",
 "home.intro":"我研究抗病毒药物的定量药理学与 PK/PD 建模,关注病毒动力学、体外药物相互作用建模,以及基于模型的首次人体剂量预测。",
@@ -33,21 +15,18 @@ zh:{
 "games.note":"我自己开发的网页小游戏,直接在浏览器中运行。",
 "g1.t":"动物数独(6×6 / 8×8 / 9×9)","g1.d":"动物主题数独,共 36 道挑战关卡,支持分级提示、候选标记和试探颜色,最佳用时保存在你的浏览器中。","games.play":"开始玩","games.src":"源码",
 "foot":"版权所有。"
-}};
-var base=document.documentElement.getAttribute("data-base")||"";
-var page=document.body.getAttribute("data-page");
-var links=[["index.html","nav.home"],["research.html","nav.research"],["publications.html","nav.pub"],["writing.html","nav.writing"],["games/index.html","nav.games"]];
-var nav=links.map(function(l){return '<a href="'+base+l[0]+'" data-i18n="'+l[1]+'"'+(l[0]===page?' class="active"':'')+'></a>';}).join("");
-document.getElementById("site-header").innerHTML='<header><a class="brand" href="'+base+'index.html">Chenyu Wang</a><nav>'+nav+'</nav><button id="lang-toggle" type="button"></button></header>';
-document.getElementById("site-footer").innerHTML='<footer>&copy; '+new Date().getFullYear()+' Chenyu Wang. <span data-i18n="foot"></span></footer>';
+};
+var els=document.querySelectorAll("[data-i18n]");
+els.forEach(function(el){el.setAttribute("data-en",el.textContent);});
 var u="378990110",d="qq.com";
 document.querySelectorAll(".email").forEach(function(e){e.innerHTML='<a href="mailto:'+u+'@'+d+'">'+u+'@'+d+'</a>';});
-var lang=localStorage.getItem("lang")||"en";
+var lang=localStorage.getItem("lang")==="zh"?"zh":"en";
+var btn=document.getElementById("lang-toggle");
 function apply(){
 document.documentElement.lang=lang==="zh"?"zh-CN":"en";
-document.querySelectorAll("[data-i18n]").forEach(function(el){var v=dict[lang][el.getAttribute("data-i18n")];if(v!==undefined)el.textContent=v;});
-document.getElementById("lang-toggle").textContent=lang==="zh"?"EN":"中文";
+els.forEach(function(el){var k=el.getAttribute("data-i18n");el.textContent=(lang==="zh"&&zh[k]!==undefined)?zh[k]:el.getAttribute("data-en");});
+btn.textContent=lang==="zh"?"EN":"中文";
 }
-document.getElementById("lang-toggle").addEventListener("click",function(){lang=lang==="zh"?"en":"zh";localStorage.setItem("lang",lang);apply();});
+btn.addEventListener("click",function(){lang=lang==="zh"?"en":"zh";localStorage.setItem("lang",lang);apply();});
 apply();
 })();
