@@ -14,7 +14,7 @@ en:{
 "pub.note":"Publication list coming soon.",
 "writing.note":"Articles and notes coming soon.",
 "games.note":"Small browser games I built. They run entirely in your browser.",
-"g1.t":"Animal Sudoku","g1.d":"An animal-themed Latin-square puzzle for young children.","games.soon":"Coming soon",
+"g1.t":"Animal Sudoku (6×6 / 8×8 / 9×9)","g1.d":"An animal-themed sudoku with 36 challenge levels, tiered hints, candidate notes and trial colours. Best times are saved in your browser.","games.play":"Play","games.src":"Source code",
 "foot":"All rights reserved."
 },
 zh:{
@@ -31,7 +31,7 @@ zh:{
 "pub.note":"论文列表即将更新。",
 "writing.note":"文章与笔记即将更新。",
 "games.note":"我自己开发的网页小游戏,直接在浏览器中运行。",
-"g1.t":"动物数独","g1.d":"面向低龄儿童的动物主题拉丁方小游戏。","games.soon":"即将上线",
+"g1.t":"动物数独(6×6 / 8×8 / 9×9)","g1.d":"动物主题数独,共 36 道挑战关卡,支持分级提示、候选标记和试探颜色,最佳用时保存在你的浏览器中。","games.play":"开始玩","games.src":"源码",
 "foot":"版权所有。"
 }};
 var base=document.documentElement.getAttribute("data-base")||"";
